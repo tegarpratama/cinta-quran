@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="col">
+    <div class="col-lg-8 col-md-12 col-sm-12">
         <div class="card">
             <div class="card-title">
                 <h4>Program </h4>

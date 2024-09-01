@@ -14,4 +14,13 @@ class KajianCategory extends Model
     protected $table = 'kajian_categories';
     protected $guarded = [];
 
+    /**
+     * Get all of the comments for the DonationCategory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function kajian()
+    {
+        return $this->hasMany(Kajian::class, 'kajian_category_id', 'id');
+    }
 }

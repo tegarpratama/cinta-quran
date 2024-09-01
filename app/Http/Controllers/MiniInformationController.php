@@ -59,8 +59,8 @@ class MiniInformationController extends Controller
 
     public function destroy($id)
     {
-        $teacher = MiniInformation::findOrFail($id);
-        $teacher->destroy($id);
+        $data = MiniInformation::findOrFail($id);
+        $data->destroy($id);
 
         return redirect()->route('mini.info.index')->with('status', 'Informasi homepage berhasil dihapus');
     }

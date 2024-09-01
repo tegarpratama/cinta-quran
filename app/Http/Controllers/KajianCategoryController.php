@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\KajianCategory;
+use App\Models\Kajian;
 
 class KajianCategoryController extends Controller
 {
@@ -57,8 +58,14 @@ class KajianCategoryController extends Controller
 
     public function destroy($id)
     {
-        $teacher = KajianCategory::findOrFail($id);
-        $teacher->update([
+        $data = KajianCategory::findOrFail($id);
+        $donations = Kajian::where('kajian_category_id', $id)->count();
+
+        if ($donations > 0) {
+            return redirect()->back()->with('error', 'Kategori kajian tidak dihapus, harap hapus kajian terlebih dahulu');
+        }
+
+        $data->update([
             'deleted_at' => now()
         ]);
 

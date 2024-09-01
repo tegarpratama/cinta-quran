@@ -1,29 +1,29 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-8 col-md-12 col-sm-12">
         <div class="card">
             <div class="card-title">
-                <h4>Tambah Donasi </h4>
+                <h4>Tambah Kajian </h4>
             </div>    
  
             <div class="card-body">
                 <div class="basic-form">
-                    <form method="POST" action="{{ Route('donation.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ Route('kajian.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Gambar</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="image">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="banner">
                                 <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                             </div>
-                            @error('image')
+                            @error('banner')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label>Kategori</label>
-                            <select class="form-control" name="category_id">
+                            <select class="form-control" name="kajian_category_id">
                                 @foreach ($categories as $c)
                                     <option value="{{ $c->id }}">{{ $c->name }}</option>
                                 @endforeach
@@ -37,16 +37,23 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Jatuh Tempo</label>
-                            <input type="date" class="form-control" name="due_date">
-                            @error('due_date')
+                            <label>Tanggal</label>
+                            <input type="date" class="form-control" name="start_date">
+                            @error('start_date')
                                 <small class="text-danger">{{ $message }}</small> <br>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Maksimal Pendanaan</label>
-                            <input type="text" class="form-control" name="max_fund">
-                            @error('max_fund')
+                            <label>Waktu Mulai</label>
+                            <input type="time" class="form-control" name="start_time">
+                            @error('start_time')
+                                <small class="text-danger">{{ $message }}</small> <br>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Waktu Akhir</label>
+                            <input type="time" class="form-control" name="end_time">
+                            @error('end_time')
                                 <small class="text-danger">{{ $message }}</small> <br>
                             @enderror
                         </div>

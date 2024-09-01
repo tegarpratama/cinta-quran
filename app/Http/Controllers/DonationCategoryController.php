@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DonationCategory;
+use App\Models\Donation;
 
 class DonationCategoryController extends Controller
 {
@@ -58,6 +59,12 @@ class DonationCategoryController extends Controller
     public function destroy($id)
     {
         $data = DonationCategory::findOrFail($id);
+        $donations = Donation::where('category_id', $id)->count();
+
+        if ($donations > 0) {
+            return redirect()->back()->with('error', 'Kategori tidak dihapus, harap hapus donasi terlebih dahulu');
+        }
+
         $data->update([
             'deleted_at' => now()
         ]);

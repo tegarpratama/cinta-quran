@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="col-8">
+    <div class="col-lg-8 col-md-12 col-sm-12">
         <div class="card">
             <div class="card-title">
                 <h4>Amazing Group Homepage </h4>
@@ -25,7 +25,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th style="width: 20%">Logo</th>
+                                <th style="width: 40%">Logo</th>
                                 <th class="text-left">Action</th>
                             </tr>
                         </thead>

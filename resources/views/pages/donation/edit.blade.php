@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="col-8">
+    <div class="col-lg-8 col-md-12 col-sm-12">
         <div class="card">
             <div class="card-title">
                 <h4>Edit Donasi </h4>
@@ -29,7 +29,7 @@
                             <label>Kategori</label>
                             <select class="form-control" name="category_id">
                                 @foreach ($categories as $c)
-                                    <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                    <option value="{{ $c->id }}" @selected($c->id == $data->category_id)>{{ $c->name }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="col-8">
+    <div class="col-lg-8 col-md-12 col-sm-12">
         <div class="card">
             <div class="card-title">
                 <h4>Kategori Donasi </h4>
@@ -10,6 +10,12 @@
             @if (session('status'))
                 <div class="alert alert-success text-center text-light mt-2 mb-2" role="alert">
                     <strong>{{ session('status') }}</strong>
+                </div>
+            @endif
+           
+            @if (session('error'))
+                <div class="alert alert-danger text-center text-light mt-2 mb-2" role="alert">
+                    <strong>{{ session('error') }}</strong>
                 </div>
             @endif
     

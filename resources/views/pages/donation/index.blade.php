@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="col">
+    <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="card">
             <div class="card-title">
                 <h4>Donasi </h4>
@@ -25,7 +25,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th style="width: 20%">Image</th>
+                                <th style="width: 30%">Image</th>
                                 <th>Judul</th>
                                 <th>Kategori</th>
                                 <th>Jatuh Tempo</th>
