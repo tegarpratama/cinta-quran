@@ -9,11 +9,14 @@
  
             <div class="card-body">
                 <div class="basic-form">
-                    <form method="POST" action="{{ Route('category.kajian.store') }}">
+                    <form method="POST" action="{{ Route('category.kajian.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>Icon</label>
-                            <input type="text" class="form-control" name="icon">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="icon">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
                             @error('icon')
                                 <small class="text-danger">{{ $message }}</small> <br>
                             @enderror

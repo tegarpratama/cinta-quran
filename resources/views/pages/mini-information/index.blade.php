@@ -35,7 +35,7 @@
                             @foreach ($data as $index => $d)
                                 <tr>
                                     <th scope="row">{{ $index  + 1  }}</th>  
-                                    <td><i class="{{ $d->icon }}"></i> </td>
+                                    <td><img class="img-fluid" src="http://127.0.0.1:8000/storage/{{ $d->icon }}" alt=""></td>
                                     <td>{{ $d->title }}</td>
                                     <td>{{ $d->description }}</td>
                                     <td class="text-left">

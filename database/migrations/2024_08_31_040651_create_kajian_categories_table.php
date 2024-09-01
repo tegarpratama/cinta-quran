@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('kajian_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('icon');
+            $table->text('icon');
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();

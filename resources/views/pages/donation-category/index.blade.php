@@ -40,7 +40,7 @@
                             @foreach ($data as $index => $d)
                                 <tr>
                                     <th scope="row">{{ $index  + 1 + ($data->currentPage() - 1) * $data->perPage() }}</th>  
-                                    <td><i class="{{ $d->icon }}"></i> </td>
+                                    <td style="font-size: 20px">{!! $d->icon !!}</td>
                                     <td>{{ $d->name }}</td>
                                     <td class="text-left">
                                         <a class="btn btn-warning btn-sm text-white" href="{{ Route('category.donation.edit', $d->id) }}">

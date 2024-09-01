@@ -25,7 +25,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th style="width: 30%">Image</th>
+                                <th style="width: 15%">Image</th>
                                 <th>Judul</th>
                                 <th>Kategori</th>
                                 <th>Jatuh Tempo</th>

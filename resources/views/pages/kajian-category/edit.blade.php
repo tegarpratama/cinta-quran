@@ -9,12 +9,18 @@
  
             <div class="card-body">
                 <div class="basic-form">
-                    <form method="POST" action="{{ Route('category.kajian.update', $data->id) }}">
+                    <form method="POST" action="{{ Route('category.kajian.update', $data->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
                             <label>Icon</label>
-                            <input type="text" class="form-control" name="icon" value="{{ old('icon') ? old('icon') : $data->icon }}">
+                            <div class="" style="width: 30%">
+                                <img class="img-fluid" src="http://127.0.0.1:8000/storage/{{ $data->icon }}" alt="">
+                            </div>
+                            <div class="custom-file mt-3">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" name="icon">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                            </div>
                             @error('icon')
                                 <small class="text-danger">{{ $message }}</small> <br>
                             @enderror

@@ -55,7 +55,7 @@
     <section
       id="hero"
       class="d-flex flex-column justify-content-center align-items-center"
-      style="background: url('http://127.0.0.1:8000/storage/{{ $banner->image_url }}') center center no-repeat; background-size: cover;"
+      style="background: url('http://127.0.0.1:8000/storage/{{ $banner ? $banner->image_url : '' }}') center center no-repeat; background-size: cover;"
     >
       <div class="container text-center text-md-left" data-aos="fade-up">
         <h1>Dukung Program <br> Dakwah Syiar Qur'an <br> Project.</h1>
@@ -70,21 +70,13 @@
         <div class="row mini-info mt-5">
           <div class="col-6">
             <div class="row">
-              <div class="col">
-                <img src="assets/img/kajian.png" alt="">
-                <p class="mt-2">Kajian Perkantoran</p>
-                <p class="text-info" style="font-size: 20px; margin-top: -10px;"><strong>+124</strong></p>
-              </div>
-              <div class="col">
-                <img src="assets/img/mosque.png" alt="">
-                <p class="mt-2">Majelis Cinta Quran</p>
-                <p class="text-info" style="font-size: 20px; margin-top: -10px;"><strong>+124</strong></p>
-              </div>
-              <div class="col">
-                <img src="assets/img/online.png" alt="">
-                <p class="mt-2">Kajian Online</p>
-                <p class="text-info" style="font-size: 20px; margin-top: -10px;"><strong>+124</strong></p>
-              </div>
+              @for ($i = 0; $i < count($totalKajian); $i++)
+                <div class="col">
+                  <img src="http://127.0.0.1:8000/storage/{{ $totalKajian[$i]->icon }}" alt="">
+                  <p class="mt-2">{{ $totalKajian[$i]->name }}</p>
+                  <p class="text-info" style="font-size: 20px; margin-top: -10px;"><strong>+{{ $totalKajian[$i]->total }}</strong></p>
+                </div>
+              @endfor
             </div>
           </div>
         </div>
@@ -110,114 +102,50 @@
                   <i class='bx bx-category-alt'></i>
                   Semua Kategori
                 </li>
-                <li class="rounded-pill" data-filter=".filter-app">
-                  <i class='bx bx-donate-heart' ></i>
-                  Kemanusiaan
+                @foreach ($categoryDonation as $d)
+                  <li class="rounded-pill" data-filter=".filter-{{$d->id}}">
+                    {!! $d->icon !!}
+                    {{ $d->name }}
+                  </li>
+                @endforeach
+                <li class="rounded-pill" data-filter=".filter-lainnya">
+                  <i class='bx bx-chevrons-right' ></i>
+                  Lainnya
                 </li>
-                <li class="rounded-pill" data-filter=".filter-card">
-                  <i class='bx bx-moon'></i>
-                  IBBQ
-                </li>
-                <li class="rounded-pill" data-filter=".filter-web">
-                  <i class='bx bx-moon'></i>
-                  Wakaf
-                </li>
-                <li class="rounded-pill" data-filter=".filter-web">Lainnya</li>
               </ul>
             </div>
           </div>
 
           <div class="row portfolio-container">
-            <div
-              class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp"
-            >
-              <div class="portfolio-wrap">
-                <figure>
-                  <img
-                    src="assets/img/portfolio/portfolio-1.jpg"
-                    class="img-fluid"
-                    alt=""
-                  />
-                </figure>
-
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html">Sedekah beras untuk seluruh para keluarga di afrika selatan</a></h4>
-                  <div class="row mt-5">
-                    <div class="col">
-                      <p>Dana Terkumpul</p>
-                      <p class="text-info">Rp 0</p>
+            @foreach ($donation as $d)
+              <div class="col-lg-4 col-md-6 portfolio-item filter-{{ $d->category_id }} wow fadeInUp">
+                <div class="portfolio-wrap">
+                  <figure>
+                    <img
+                      src="http://127.0.0.1:8000/storage/{{ $d->image_url }}"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </figure>
+                  <div class="portfolio-info">
+                    <h4><a href="portfolio-details.html">{{ $d->title }}</a></h4>
+                    <div class="row mt-5">
+                      <div class="col">
+                        <p>Dana Terkumpul</p>
+                        <p class="text-info">{{ 'Rp ' . number_format(0, 0, ',', '.') }}</p>
+                      </div>
+                      <div class="col text-right">
+                        <p>Sisa Waktu</p>
+                        <p class="text-info">{{ $d->expired }}</p>
+                      </div>
                     </div>
-                    <div class="col text-right">
-                      <p>Sisa Waktu</p>
-                      <p class="text-info">Rp 2.000.000</p>
+                    <div class="progress mt-3" style="height: 5px;">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 50%; height: 5px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                   </div>
-                  <div class="progress mt-3" style="height: 5px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 50%; height: 5px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
                 </div>
               </div>
-            </div>
-            <div
-            class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp"
-          >
-            <div class="portfolio-wrap">
-              <figure>
-                <img
-                  src="assets/img/portfolio/portfolio-1.jpg"
-                  class="img-fluid"
-                  alt=""
-                />
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Sedekah beras untuk seluruh para keluarga di afrika selatan</a></h4>
-                <div class="row mt-5">
-                  <div class="col">
-                    <p>Dana Terkumpul</p>
-                    <p class="text-info">Rp 0</p>
-                  </div>
-                  <div class="col text-right">
-                    <p>Sisa Waktu</p>
-                    <p class="text-info">Rp 2.000.000</p>
-                  </div>
-                </div>
-                <div class="progress mt-3" style="height: 5px;">
-                  <div class="progress-bar bg-success" role="progressbar" style="width: 50%; height: 5px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </div>
-            </div>
-            <div
-            class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp"
-          >
-            <div class="portfolio-wrap">
-              <figure>
-                <img
-                  src="assets/img/portfolio/portfolio-1.jpg"
-                  class="img-fluid"
-                  alt=""
-                />
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="portfolio-details.html">Sedekah beras untuk seluruh para keluarga di afrika selatan</a></h4>
-                <div class="row mt-5">
-                  <div class="col">
-                    <p>Dana Terkumpul</p>
-                    <p class="text-info">Rp 0</p>
-                  </div>
-                  <div class="col text-right">
-                    <p>Sisa Waktu</p>
-                    <p class="text-info">Rp 2.000.000</p>
-                  </div>
-                </div>
-                <div class="progress mt-3" style="height: 5px;">
-                  <div class="progress-bar bg-success" role="progressbar" style="width: 50%; height: 5px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </div>
-            </div>
+            @endforeach
           </div>
         </div>
       </section>
@@ -228,66 +156,28 @@
       <section id="what-we-do" class="what-we-do">
         <div class="container">
           <div class="row">
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-              <div class="icon-box">
-                <div class="row">
-                  <div class="col-4">
-                    <div class="icon">
-                      <img src="/assets/img/icon-money.png" alt="">
+            @foreach ($miniInfo as $d)
+              <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                <div class="icon-box">
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="icon">
+                        <img src="http://127.0.0.1:8000/storage/{{ $d->icon }}" alt="">
+                      </div>
                     </div>
-                  </div>
-                  <div class="col">
-                    <h4><a href="">Zakat 100%</a></h4>
-                    <p>
-                      Tunaikan zakat anda melalui program zakat 100% amanah.
-                    </p>
-                    <div class="mt-3">
-                      <a href="">Selengkapnya</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-              <div class="icon-box">
-                <div class="row">
-                  <div class="col-4">
-                    <div class="icon">
-                      <img src="/assets/img/icon-money.png" alt="">
-                    </div>
-                  </div>
-                  <div class="col">
-                    <h4><a href="">Zakat 100%</a></h4>
-                    <p>
-                      Tunaikan zakat anda melalui program zakat 100% amanah.
-                    </p>
-                    <div class="mt-3">
-                      <a href="">Selengkapnya</a>
+                    <div class="col">
+                      <h4><a href="">{{ $d->title }}</a></h4>
+                      <p>
+                        {{ $d->description }}
+                      </p>
+                      <div class="mt-3">
+                        <a href="">Selengkapnya</a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-              <div class="icon-box">
-                <div class="row">
-                  <div class="col-4">
-                    <div class="icon">
-                      <img src="/assets/img/icon-money.png" alt="">
-                    </div>
-                  </div>
-                  <div class="col">
-                    <h4><a href="">Zakat 100%</a></h4>
-                    <p>
-                      Tunaikan zakat anda melalui program zakat 100% amanah.
-                    </p>
-                    <div class="mt-3">
-                      <a href="">Selengkapnya</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
       </section>

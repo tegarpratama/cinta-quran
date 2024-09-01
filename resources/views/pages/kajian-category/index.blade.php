@@ -40,7 +40,7 @@
                             @foreach ($data as $index => $d)
                                 <tr>
                                     <th scope="row">{{ $index  + 1 + ($data->currentPage() - 1) * $data->perPage() }}</th>  
-                                    <td>{!! $d->icon !!}</td>
+                                    <td><img class="img-fluid" src="http://127.0.0.1:8000/storage/{{ $d->icon }}" alt=""></td>
                                     <td>{{ $d->name }}</td>
                                     <td class="text-left">
                                         <a class="btn btn-warning btn-sm text-white" href="{{ Route('category.kajian.edit', $d->id) }}">

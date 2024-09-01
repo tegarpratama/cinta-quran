@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 use App\Models\MiniInformation;
 
 class MiniInformationController extends Controller
@@ -29,7 +31,20 @@ class MiniInformationController extends Controller
             'description' => 'required',
         ]);
 
-        MiniInformation::create($validated);
+        $data = $request->except('_token', '_method');
+
+        if(!$request->hasFile('icon')) {
+            throw ValidationException::withMessages(['icon' => "Icon is required"]);
+        }
+
+        $file = $request->icon;
+        $extension =  $request->icon->extension();
+        $newName = rand(1, 999) . '-' . date('Ymd-His') . '.' . $extension;
+
+        Storage::putFileAs('public/icon', $file, $newName);
+        $data['icon'] = 'icon/' . $newName;
+
+        MiniInformation::create($data);
 
         return redirect()->route('mini.info.index')->with('status', 'Informasi homepage berhasil ditambahkan');
     }
@@ -51,8 +66,19 @@ class MiniInformationController extends Controller
             'description' => 'required',
         ]);
 
-        $data = MiniInformation::findOrFail($id);
-        $data->update($validated);
+        $data = $request->except('_token', '_method');
+
+        if($request->hasFile('icon')) {
+            $file = $request->icon;
+            $extension =  $request->icon->extension();
+            $newName = rand(1, 999) . '-' . date('Ymd-His') . '.' . $extension;
+    
+            Storage::putFileAs('public/icon', $file, $newName);
+            $data['icon'] = 'icon/' . $newName;
+        }
+
+        $info = MiniInformation::findOrFail($id);
+        $info->update($data);
 
         return redirect()->route('mini.info.index')->with('status', 'Informasi homepage berhasil diperbarui');
     }

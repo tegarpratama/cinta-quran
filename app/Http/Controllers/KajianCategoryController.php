@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 use App\Models\KajianCategory;
 use App\Models\Kajian;
 
@@ -29,7 +31,20 @@ class KajianCategoryController extends Controller
             'name' => 'required',
         ]);
 
-        KajianCategory::create($validated);
+        $data = $request->except('_token', '_method');
+
+        if(!$request->hasFile('icon')) {
+            throw ValidationException::withMessages(['icon' => "Icon is required"]);
+        }
+
+        $file = $request->icon;
+        $extension =  $request->icon->extension();
+        $newName = rand(1, 999) . '-' . date('Ymd-His') . '.' . $extension;
+
+        Storage::putFileAs('public/icon', $file, $newName);
+        $data['icon'] = 'icon/' . $newName;
+
+        KajianCategory::create($data);
 
         return redirect()->route('category.kajian.index')->with('status', 'Kategori kajian berhasil ditambahkan');
     }
@@ -50,8 +65,19 @@ class KajianCategoryController extends Controller
             'name' => 'required',
         ]);
 
-        $data = KajianCategory::findOrFail($id);
-        $data->update($validated);
+        $data = $request->except('_token', '_method');
+
+        if($request->hasFile('icon')) {
+            $file = $request->icon;
+            $extension =  $request->icon->extension();
+            $newName = rand(1, 999) . '-' . date('Ymd-His') . '.' . $extension;
+    
+            Storage::putFileAs('public/icon', $file, $newName);
+            $data['icon'] = 'icon/' . $newName;
+        }
+
+        $category = KajianCategory::findOrFail($id);
+        $category->update($data);
 
         return redirect()->route('category.kajian.index')->with('status', 'Kategori kajian berhasil diperbarui');
     }
