@@ -18,7 +18,7 @@
                             @error('icon')
                                 <small class="text-danger">{{ $message }}</small> <br>
                             @enderror
-                            <small><a target="_blank" class="text-primary" href="https://themify.me/themify-icons">Click here</a> for references icon</small>
+                            <small><a target="_blank" class="text-primary" href="https://boxicons.com/">Click here</a> for references icon</small>
                         </div>
                         <div class="form-group">
                             <label>Judul</label>

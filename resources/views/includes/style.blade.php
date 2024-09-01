@@ -21,3 +21,4 @@
 <link href="{{ asset('assets/back/css/lib/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/back/css/lib/helper.css') }}" rel="stylesheet">
 <link href="{{ asset('assets/back/css/style.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/front/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet" />

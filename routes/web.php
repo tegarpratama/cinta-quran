@@ -12,6 +12,7 @@ use App\Http\Controllers\DonationController;
 use App\Http\Controllers\KajianController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => '/login', 'middleware' => 'guest'], function () {
     Route::get('/', [LoginController::class, 'index'])->name('login.index');
