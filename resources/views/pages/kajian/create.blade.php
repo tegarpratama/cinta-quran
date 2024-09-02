@@ -57,6 +57,13 @@
                                 <small class="text-danger">{{ $message }}</small> <br>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label>Posisi</label>
+                            <select class="form-control" name="position">
+                                <option value="">Etc</option>
+                                <option value="first">First</option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
                     </form>
                 </div>

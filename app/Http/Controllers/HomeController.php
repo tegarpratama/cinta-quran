@@ -11,6 +11,8 @@ use App\Models\Donation;
 use App\Models\MiniInformation;
 use App\Models\Group;
 use App\Models\Program;
+use App\Models\KajianCategory;
+use App\Models\Kajian;
 use DB;
 
 class HomeController extends Controller
@@ -50,7 +52,10 @@ class HomeController extends Controller
         $group = Group::get();
         $mainProgram = Program::whereNotNull('position')->limit(2)->get();
         $programs = Program::whereNull('position')->limit(3)->get();
-        // dd($programs);
+        $kajianCategories = KajianCategory::get();
+        $kajian = Kajian::get();
+
+        // dd($kajian);
 
 
         return view('welcome', [
@@ -63,6 +68,8 @@ class HomeController extends Controller
             'group' => $group,
             'mainProgram' => $mainProgram,
             'programs' => $programs,
+            'kajianCategories' => $kajianCategories,
+            'kajian' => $kajian,
         ]);
     }
 }

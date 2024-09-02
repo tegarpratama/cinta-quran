@@ -61,6 +61,13 @@
                                 <small class="text-danger">{{ $message }}</small> <br>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label>Posisi</label>
+                            <select class="form-control" name="position">
+                                <option value="" @selected($data->position == null)>Etc</option>
+                                <option value="first" @selected($data->position == "first")>First</option>
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary btn-sm">Update</button>
                     </form>
                 </div>

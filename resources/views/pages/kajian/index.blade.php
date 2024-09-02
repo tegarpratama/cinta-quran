@@ -30,6 +30,7 @@
                                 <th>Kategori</th>
                                 <th>Tanggal</th>
                                 <th>Waktu</th>
+                                <th>Posisi</th>
                                 <th class="text-left">Action</th>
                             </tr>
                         </thead>
@@ -44,6 +45,7 @@
                                     <td>{{ $d->category->name }}</td>
                                     <td>{{ $d->start_date }}</td>
                                     <td>{{ $d->start_time }} - {{ $d->end_time }}</td>
+                                    <td>{{ $d->position ? $d->position : '-' }}</td>
                                     <td class="text-left">
                                         <a class="btn btn-warning btn-sm text-white" href="{{ Route('kajian.edit', $d->id) }}">
                                             <i class="ti-pencil"></i>

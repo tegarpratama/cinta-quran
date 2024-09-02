@@ -242,61 +242,55 @@
           <div class="row">
             <div class="col-lg-12">
               <ul id="portfolio-flters">
-                <li class="rounded-pill" data-filter="*" class="filter-active">Semua Kajian</li>
-                <li class="rounded-pill" data-filter=".filter-berlangsung">Berlangsung</li>
-                <li class="rounded-pill" data-filter=".filter-test1">Akan Datang</li>
-                <li class="rounded-pill" data-filter=".filter-test2">Perkantoran</li>
-                <li class="rounded-pill" data-filter=".filter-test3">Online</li>
-                <li class="rounded-pill" data-filter=".filter-test4">Lainnya</li>
+                <li class="rounded-pill" data-filter="*" class="filter-active">
+                  <i class='bx bx-category-alt'></i>
+                  Semua Kajian
+                </li>
+                @foreach ($kajianCategories as $d)
+                  <li class="rounded-pill" data-filter=".filter-{{ $d->id }}">
+                    <img style="width: 15px" src="http://127.0.0.1:8000/storage/{{ $d->icon }}" alt="">
+                    {{ $d->name }}
+                  </li>
+                @endforeach
+                  <li class="rounded-pill" data-filter=".filter-test4">
+                    <i class='bx bx-chevrons-right' ></i>
+                    Lainnya
+                  </li>
+                {{-- <li class="rounded-pill" data-filter=".filter-berlangsung">Berlangsung</li> --}}
+                {{-- <li class="rounded-pill" data-filter=".filter-test1">Akan Datang</li> --}}
               </ul>
             </div>
           </div>
 
           <div class="program row">
-            <div class="col-6 mb-4 filter-berlangsung">
-              <div class="card bg-dark text-white">
-                <img src="/assets/img/kajian-1.jpg" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <div class="custom-text">
-                    <h5 class="card-title">Menyempurnakan Taqwa</h5>
-                    <p class="card-text kajian">Kamis, 20 September 2021.</p>
-                    <p class="card-text kajian-2 mt-4">09:00 - 10:00</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="row">
-                <div class="col-4 mb-4">
-                  <div class="card bg-dark text-white">
-                    <img src="/assets/img/kajian-1.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay">
+            @foreach ($kajian as $d)
+                @if ($d->position == "first")
+                  <div class="col-6 mb-4 filter-{{ $d->kajian_category_id }}">
+                    <div class="card bg-dark text-white">
+                      <img src="http://127.0.0.1:8000/storage/{{ $d->banner_url }}" class="card-img" alt="...">
+                      <div class="card-img-overlay">
+                        <div class="custom-text">
+                          <h5 class="card-title">{{ $d->title }}</h5>
+                          <p class="card-text kajian">{{ $d->start_date }}</p>
+                          <p class="card-text kajian-2 mt-4">{{ $d->start_time }} - {{ $d->end_time }}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-4 mb-4">
-                  <div class="card bg-dark text-white">
-                    <img src="/assets/img/kajian-1.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay">
+                @else
+                  <div class="col">
+                    <div class="row">
+                      <div class="col mb-4">
+                        <div class="card bg-dark text-white">
+                          <img src="http://127.0.0.1:8000/storage/{{ $d->banner_url }}" class="card-img" alt="...">
+                          <div class="card-img-overlay">
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-4 mb-4">
-                  <div class="card bg-dark text-white">
-                    <img src="/assets/img/kajian-1.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-4 mb-4">
-                  <div class="card bg-dark text-white">
-                    <img src="/assets/img/kajian-1.jpg" class="card-img" alt="...">
-                    <div class="card-img-overlay">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                @endif
+            @endforeach
           </div>
         </div>
       </section>
