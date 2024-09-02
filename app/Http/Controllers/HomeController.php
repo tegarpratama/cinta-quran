@@ -9,6 +9,8 @@ use App\Models\Banner;
 use App\Models\DonationCategory;
 use App\Models\Donation;
 use App\Models\MiniInformation;
+use App\Models\Group;
+use App\Models\Program;
 use DB;
 
 class HomeController extends Controller
@@ -45,6 +47,11 @@ class HomeController extends Controller
         }
 
         $miniInfo = MiniInformation::limit(3)->get();
+        $group = Group::get();
+        $mainProgram = Program::whereNotNull('position')->limit(2)->get();
+        $programs = Program::whereNull('position')->limit(3)->get();
+        // dd($programs);
+
 
         return view('welcome', [
             'company_information' => $companyInformation,
@@ -53,6 +60,9 @@ class HomeController extends Controller
             'categoryDonation' => $categoryDonation,
             'donation' => $donation,
             'miniInfo' => $miniInfo,
+            'group' => $group,
+            'mainProgram' => $mainProgram,
+            'programs' => $programs,
         ]);
     }
 }

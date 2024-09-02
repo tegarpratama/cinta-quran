@@ -27,6 +27,7 @@
                                 <th>#</th>
                                 <th style="width: 20%">Banner</th>
                                 <th>Title</th>
+                                <th>Position</th>
                                 <th>Description</th>
                                 <th class="text-left">Action</th>
                             </tr>
@@ -39,6 +40,7 @@
                                         <img class="img-fluid" src="http://127.0.0.1:8000/storage/{{ $d->banner_url }}" alt="">
                                     </td>
                                     <td>{{ $d->title }}</td>
+                                    <td>{{ $d->position }}</td>
                                     <td>{{ $d->description }}</td>
                                     <td class="text-left">
                                         <a class="btn btn-warning btn-sm text-white" href="{{ Route('program.edit', $d->id) }}">

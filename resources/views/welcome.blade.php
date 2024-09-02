@@ -195,58 +195,35 @@
           </div>
 
           <div class="program row">
-            <div class="col-8 mb-4">
-              <div class="card bg-dark text-white">
-                <img src="/assets/img/program-1.png" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <div class="custom-text">
-                    <h5 class="card-title">Indonesia Bisa Baca Quran</h5>
-                    <p class="card-text">Sebuah Fakta mengejutkan menyatakan bahwa 53,57% (BPS 2018). kaum muslimin di Indonesia tidak bisa membaca Al-Quran.</p>
+            @foreach ($mainProgram as $d)
+              @if ($d->position == "first") 
+                <div class="col-8 mb-4">
+              @elseif($d->position == "second")
+                <div class="col-4 mb-4">  
+              @endif
+                  <div class="card bg-dark text-white">
+                    <img src="http://127.0.0.1:8000/storage/{{ $d->banner_url }}" class="card-img" alt="...">
+                    <div class="card-img-overlay">
+                      <div class="custom-text">
+                        <h5 class="card-title">{{ $d->title }}</h5>
+                        <p class="card-text">{{ $d->description }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            @endforeach
+            @foreach ($programs as $d)
+              <div class="col-4 mb-4">
+                <div class="card bg-dark text-white">
+                  <img src="http://127.0.0.1:8000/storage/{{ $d->banner_url }}" class="card-img" alt="...">
+                  <div class="card-img-overlay">
+                    <div class="custom-text">
+                      <h5 class="card-title">{{ $d->title }} </h5>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-4 mb-4">
-              <div class="card bg-dark text-white">
-                <img src="/assets/img/program-2.png" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <div class="custom-text">
-                    <h5 class="card-title">CintaQuran Call</h5>
-                    <p class="card-text">Cinta Quran Call merupakan layanan pendampingan.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-4 mb-4">
-              <div class="card bg-dark text-white">
-                <img src="/assets/img/program-3.png" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <div class="custom-text">
-                    <h5 class="card-title">Kajian Perkantoran</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-4 mb-4">
-              <div class="card bg-dark text-white">
-                <img src="/assets/img/program-4.png" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <div class="custom-text">
-                    <h5 class="card-title">Kajian Perkantoran</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-4 mb-4">
-              <div class="card bg-dark text-white">
-                <img src="/assets/img/program-5.png" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                  <div class="custom-text">
-                    <h5 class="card-title">Kajian Perkantoran</h5>
-                  </div>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
       </section>
@@ -335,26 +312,13 @@
           <div class="program row">
             <div class="col">
               <div class="row">
-                <div class="col-3 mb-4">
-                  <div class="card group">
-                    <img src="/assets/img/group-1.png" class="card-img py-3" alt="...">
+                @foreach ($group as $g)
+                  <div class="col-3 mb-4">
+                    <div class="card group">
+                      <img src="http://127.0.0.1:8000/storage/{{ $g->logo }}" class="card-img py-3" alt="...">
+                    </div>
                   </div>
-                </div>
-                <div class="col-3 mb-4">
-                  <div class="card group">
-                    <img src="/assets/img/group-1.png" class="card-img py-3" alt="...">
-                  </div>
-                </div>
-                <div class="col-3 mb-4">
-                  <div class="card group">
-                    <img src="/assets/img/group-1.png" class="card-img py-3" alt="...">
-                  </div>
-                </div>
-                <div class="col-3 mb-4">
-                  <div class="card group">
-                    <img src="/assets/img/group-1.png" class="card-img py-3" alt="...">
-                  </div>
-                </div>
+                @endforeach
               </div>
             </div>
           </div>
@@ -368,7 +332,7 @@
           <div class="program program-custom-banner" row">
             <div class="col-12 mb-4">
               <div class="card bg-dark text-white custom-banner">
-                <img src="/assets/img/banner-daftar.png" class="card-img" alt="...">
+                <img src="http://127.0.0.1:8000/assets/front/img/banner-daftar.png" class="card-img" alt="...">
                 <div class="card-img-overlay">
                   <div class="custom-text">
                     <h5 class="card-title">Mari bergabung menjadi keluarga Cinta Quran <br> Foundation agar bisa berbagi <br>dengan sesama</h5>
@@ -406,16 +370,16 @@
             <div class="col-lg-2 col-md-6 footer-links">
               <ul>
                 <li>
-                  <a href="#">Program</a>
+                  <a href="#program">Program</a>
                 </li>
                 <li>
-                  <a href="#">Donasi</a>
+                  <a href="#Donasi">Donasi</a>
                 </li>
                 <li>
-                  <a href="#">Kajian</a>
+                  <a href="#kajian">Kajian</a>
                 </li>
                 <li>
-                  <a href="#">Kemitraan</a>
+                  <a href="#mitra">Kemitraan</a>
                 </li>
                 <li>
                   <a href="#">Inspirasi</a>
@@ -450,9 +414,7 @@
                 </div>
                 <div class="col">
                   <p>
-                    Jl. Parikesit Raya No.35-37 Bantarjati, <br>
-                    Bogor Utara, Kota Bogor 16153, Jawa <br>
-                    Barat, Indonesia. 
+                    {{ $company_information->address }}
                   </p>
                 </div>
               </div>
@@ -461,7 +423,7 @@
                   <i class='bx bx-envelope' ></i>
                 </div>
                 <div class="col">
-                  <p>info@cintaquran.or.id</p>
+                  <p>{{ $company_information->email }}</p>
                 </div>
               </div>
               <div class="row">
@@ -471,7 +433,7 @@
                 <div class="col">
                   <div class="row">
                     <div class="col">
-                      <p>(0251) 85 717 62</p>
+                      <p>{{ $company_information->phone }}</p>
                     </div>
                     <div class="col hubungi">
                       <button class="btn btn-info rounded-pill">Hubungi Kami
@@ -485,10 +447,10 @@
                 <div class="col ikuti">
                   <h4>Ikuti kami di</h4>
                   <div class="social-links text-left text-md-left pt-3 pt-md-0">
-                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                    <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
-                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    <a href="{{ $company_information->facebook }}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="{{ $company_information->youtube }}" class="youtube"><i class="bx bxl-youtube"></i></a>
+                    <a href="{{ $company_information->instagram }}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="{{ $company_information->linkedin }}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                   </div>
                 </div>
               </div>

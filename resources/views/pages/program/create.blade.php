@@ -29,6 +29,14 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label>Posisi</label>
+                            <select class="form-control" name="position">
+                                <option value="first">Main</option>
+                                <option value="second">Secondary</option>
+                                <option value="">Etc</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Deskripsi</label>
                             <input type="text" class="form-control" name="description">
                             @error('description')
